@@ -26,14 +26,14 @@ OS のイメージは Ubuntu となっています．
 このリポジトリの Dockerfile を使ってビルドを行なってください．
 
 ```
-$ docker build -t TAG .
+$ docker build -t hello-selenium .
 ```
 
 イメージを実行するとシェルが開いた状態になります．
 このリポジトリのテストスクリプトをマウントし，実行することができます．
 
 ```
-$ docker run -it -v $(pwd)/scripts:/scripts TAG
+$ docker run -it -v $(pwd)/scripts:/scripts hello-selenium
 $ ruby /scripts/firefox_headless_test.rb
 ```
 
@@ -47,10 +47,10 @@ $ vagrant up
 ```
 
 デスクトップ環境として導入してある Xfce を起動し，
-VirtualBox (あるいは他の仮想ホスト) から GUI を使ってブラウザの画面を起動して (headless モードでなく) テストを実行できます．
+VirtualBox から GUI を使ってブラウザの画面を起動して (headless モードでなく) テストを実行できます．
 
 ```
 $ sudo startx &
 # (VirtualBox 等の画面を開く)
-$ ruby /vagrant/firefox_headless_test.rb
+$ ruby /vagrant/scripts/firefox_test.rb
 ```
