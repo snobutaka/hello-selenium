@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER Nobutaka SAITO <snobutaka_iwtb@icloud.com>
+MAINTAINER Nobutaka SAITO <nobutaka.saitoh@gmail.com>
 
 SHELL ["/bin/bash", "-c"]
 
@@ -20,3 +20,12 @@ RUN eval "$(rbenv init -)" && \
     rbenv global 2.5.0 && \
     rbenv rehash && \
     gem install selenium-webdriver
+
+RUN mkdir /tests && \
+    wget https://raw.githubusercontent.com/snobutaka/hello-selenium/master/scripts/firefox_headless_test.rb \
+      -O /tests/firefox_headless_test.rb && \
+    wget https://raw.githubusercontent.com/snobutaka/hello-selenium/master/scripts/search_rank_test.rb \
+      -O /tests/search_rank_test.rb
+
+COPY entrypoint.sh /
+ENTRYPOINT [ "/entrypoint.sh" ]
