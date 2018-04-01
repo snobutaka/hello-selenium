@@ -29,12 +29,26 @@ OS のイメージは Ubuntu となっています．
 $ docker build -t hello-selenium .
 ```
 
-イメージを実行するとシェルが開いた状態になります．
-このリポジトリのテストスクリプトをマウントし，実行することができます．
+あるいは [Docker Hub のイメージ](https://hub.docker.com/r/snobutaka/hello-selenium/) をプルすることもできます．
 
 ```
-$ docker run -it -v $(pwd)/scripts:/scripts hello-selenium
-$ ruby /scripts/firefox_headless_test.rb
+$ docker pull snobutaka/hello-selenium
+```
+
+コンテナを起動すると，Selenium によるテストが実行されます．
+
+```
+$ docker run --rm -t snobutaka/hello-selenium
+ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-linux]
+Loaded suite /tests/firefox_headless_test
+Started
+...
+Finished in 31.980693 seconds.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3 tests, 3 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
+100% passed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+0.09 tests/s, 0.09 assertions/s
 ```
 
 
@@ -52,5 +66,5 @@ VirtualBox から GUI を使ってブラウザの画面を起動して (headless
 ```
 $ sudo startx &
 # (VirtualBox 等の画面を開く)
-$ ruby /vagrant/scripts/firefox_test.rb
+$ ruby /vagrant/tests/firefox_test.rb
 ```

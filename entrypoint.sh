@@ -6,5 +6,5 @@ if [ $# -eq 0 ]; then
   ruby -v
   ruby /tests/firefox_headless_test.rb
 else
-  /bin/bash -c "$@"
+  /bin/bash "$@"
 fi

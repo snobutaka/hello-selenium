@@ -21,11 +21,7 @@ RUN eval "$(rbenv init -)" && \
     rbenv rehash && \
     gem install selenium-webdriver
 
-RUN mkdir /tests && \
-    wget https://raw.githubusercontent.com/snobutaka/hello-selenium/master/scripts/firefox_headless_test.rb \
-      -O /tests/firefox_headless_test.rb && \
-    wget https://raw.githubusercontent.com/snobutaka/hello-selenium/master/scripts/search_rank_test.rb \
-      -O /tests/search_rank_test.rb
+COPY tests /tests
 
 COPY entrypoint.sh /
 ENTRYPOINT [ "/entrypoint.sh" ]
